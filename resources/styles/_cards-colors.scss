@@ -1,0 +1,61 @@
+.pokemon-img {
+  --_bg-img: var(--bg-img, var(--poke-clr-normal));
+
+  background-image: var(--_bg-img);
+}
+
+.clr-fire {
+  --bg-img: var(--poke-clr-fire);
+}
+
+.clr-water {
+  --bg-img: var(--poke-clr-water);
+}
+
+.clr-electric {
+  --bg-img: var(--poke-clr-electric);
+}
+
+.clr-grass {
+  --bg-img: var(--poke-clr-grass);
+}
+
+.clr-ice {
+  --bg-img: var(--poke-clr-ice);
+}
+
+.clr-fighting {
+  --bg-img: var(--poke-clr-fighting);
+}
+
+.clr-poison {
+  --bg-img: var(--poke-clr-poison);
+}
+
+.clr-ground {
+  --bg-img: var(--poke-clr-ground);
+}
+
+.clr-psychic {
+  --bg-img: var(--poke-clr-psychic);
+}
+
+.clr-bug {
+  --bg-img: var(--poke-clr-bug);
+}
+
+.clr-rock {
+  --bg-img: var(--poke-clr-rock);
+}
+
+.clr-ghost {
+  --bg-img: var(--poke-clr-ghost);
+}
+
+.clr-dark {
+  --bg-img: var(--poke-clr-dark);
+}
+
+.clr-steel {
+  --bg-img: var(--poke-clr-steel);
+}

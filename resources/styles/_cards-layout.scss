@@ -1,0 +1,93 @@
+#card-list {
+  display: grid;
+  justify-content: center;
+
+  .pokemon-card {
+    text-align: center;
+    background-color: var(--background);
+    color: var(--text);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-level-3);
+    -webkit-box-shadow: var(--shadow-level-3);
+    -moz-box-shadow: var(--shadow-level-3);
+
+    &[data-sellable="true"] {
+      display: grid;
+
+      .sell-form {
+        align-self: end;
+      }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--background-100);
+    }
+
+    .pokemon-img {
+      overflow: hidden;
+      border-radius: 0.5rem 0.5rem 0 0;
+    }
+
+    .details {
+      padding: 0.75rem;
+
+      h2 {
+        font-size: 1.125rem;
+        line-height: 1.75rem;
+        margin-block: 0.875rem;
+
+        a {
+          color: var(--secondary);
+          font-weight: bold;
+          text-decoration: none;
+          transition: color 0.2s;
+
+          &:hover,
+          &:focus {
+            color: var(--accent-900);
+          }
+        }
+      }
+
+      .card-type {
+        opacity: 0.8;
+        display: block;
+        margin-block-end: 0.375rem;
+        font-style: italic;
+      }
+
+      .attributes {
+        display: flex;
+        justify-content: space-between;
+
+        .card-hp,
+        .card-attack,
+        .card-defense,
+        .card-price {
+          font-weight: bold;
+        }
+      }
+    }
+
+    .buy,
+    .sell {
+      width: 100%;
+      background-color: var(--primary);
+      color: hsl(215, 25%, 15%);
+      border-radius: 0 0 0.5rem 0.5rem;
+      cursor: pointer;
+      font-weight: bold;
+      padding-block: 0.625rem;
+      transition-property: background-color, margin, padding;
+      transition-duration: 0.2s;
+
+      &:hover,
+      &:focus {
+        background-color: var(--accent);
+        margin-top: -0.3125rem;
+        padding-block-end: 0.9375rem;
+      }
+    }
+  }
+}

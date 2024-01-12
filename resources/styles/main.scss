@@ -1,0 +1,60 @@
+@use "global";
+@use "cards-colors";
+@use "cards-layout";
+@use "primary-nav";
+@use "error-msg";
+
+#card-list {
+  grid-template-columns: repeat(auto-fill, minmax(min-content, 12.5rem));
+  column-gap: 1rem;
+  row-gap: 1.5rem;
+}
+
+#content {
+  .pokemon-card[data-noimage="true"] {
+    display: grid;
+
+    .buy-form {
+      align-self: end;
+    }
+  }
+
+  form {
+    background-color: var(--primary-300);
+
+    input,
+    select {
+      background-color: var(--primary-200);
+    }
+  }
+
+  .visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: auto;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    white-space: nowrap;
+  }
+
+  .pagination a {
+    display: block;
+    padding: 0.5em 1em;
+    border: 0.125em solid hsl(0, 0%, 60%);
+    border-radius: 0.5em;
+    text-decoration: none;
+
+    &[aria-current="page"] {
+      background-color: #333;
+      color: #fff;
+    }
+
+    &.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+}

@@ -1,0 +1,523 @@
+html {
+  /* for Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: var(--background-400) var(--background-200);
+}
+html::-webkit-scrollbar {
+  width: 0.625em;
+}
+html::-webkit-scrollbar-track {
+  background-color: var(--background-200);
+}
+html::-webkit-scrollbar-thumb {
+  background-color: var(--background-300);
+}
+html::-webkit-scrollbar-thumb:hover {
+  background-color: var(--background-400);
+}
+@media (prefers-color-scheme: dark) {
+  html::-webkit-scrollbar-thumb {
+    background-color: var(--background-400);
+  }
+  html::-webkit-scrollbar-thumb:hover {
+    background-color: hsl(0, 0%, 45%);
+  }
+}
+
+:root {
+  --text-50: hsl(210, 23%, 95%);
+  --text-100: hsl(217, 25%, 90%);
+  --text-200: hsl(215, 25%, 80%);
+  --text-300: hsl(215, 25%, 70%);
+  --text-400: hsl(215, 25%, 60%);
+  --text-500: hsl(215, 25%, 50%);
+  --text-600: hsl(215, 25%, 40%);
+  --text-700: hsl(215, 25%, 30%);
+  --text-800: hsl(215, 25%, 20%);
+  --text-900: hsl(217, 25%, 10%);
+  --text-950: hsl(220, 23%, 5%);
+  --text: var(--text-900);
+  --background-50: hsl(0, 0%, 95%);
+  --background-100: hsl(0, 0%, 90%);
+  --background-200: hsl(0, 0%, 80%);
+  --background-300: hsl(0, 0%, 70%);
+  --background-400: hsl(0, 0%, 60%);
+  --background-500: hsl(0, 0%, 50%);
+  --background-600: hsl(0, 0%, 40%);
+  --background-700: hsl(0, 0%, 30%);
+  --background-800: hsl(0, 0%, 20%);
+  --background-900: hsl(0, 0%, 10%);
+  --background-950: hsl(0, 0%, 5%);
+  --background: var(--background-100);
+  --primary-50: hsl(185, 52%, 95%);
+  --primary-100: hsl(185, 49%, 90%);
+  --primary-200: hsl(186, 50%, 80%);
+  --primary-300: hsl(185, 50%, 70%);
+  --primary-400: hsl(185, 50%, 60%);
+  --primary-500: hsl(185, 50%, 50%);
+  --primary-600: hsl(185, 50%, 40%);
+  --primary-700: hsl(185, 50%, 30%);
+  --primary-800: hsl(186, 51%, 20%);
+  --primary-900: hsl(185, 49%, 10%);
+  --primary-950: hsl(185, 52%, 5%);
+  --primary: var(--primary-400);
+  --secondary-50: hsl(47, 69%, 95%);
+  --secondary-100: hsl(45, 69%, 90%);
+  --secondary-200: hsl(45, 71%, 80%);
+  --secondary-300: hsl(45, 70%, 70%);
+  --secondary-400: hsl(45, 70%, 60%);
+  --secondary-500: hsl(45, 70%, 50%);
+  --secondary-600: hsl(45, 70%, 40%);
+  --secondary-700: hsl(45, 70%, 30%);
+  --secondary-800: hsl(45, 71%, 20%);
+  --secondary-900: hsl(45, 69%, 10%);
+  --secondary-950: hsl(43, 69%, 5%);
+  --secondary: var(--secondary-800);
+  --accent-50: hsl(20, 60%, 95%);
+  --accent-100: hsl(21, 61%, 90%);
+  --accent-200: hsl(22, 59%, 80%);
+  --accent-300: hsl(22, 59%, 70%);
+  --accent-400: hsl(22, 59%, 60%);
+  --accent-500: hsl(22, 59%, 50%);
+  --accent-600: hsl(22, 59%, 40%);
+  --accent-700: hsl(22, 59%, 30%);
+  --accent-800: hsl(22, 59%, 20%);
+  --accent-900: hsl(21, 61%, 10%);
+  --accent-950: hsl(24, 60%, 5%);
+  --accent: var(--accent-300);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-50: hsl(220, 23%, 5%);
+    --text-100: hsl(217, 25%, 10%);
+    --text-200: hsl(215, 25%, 20%);
+    --text-300: hsl(215, 25%, 30%);
+    --text-400: hsl(215, 25%, 40%);
+    --text-500: hsl(215, 25%, 50%);
+    --text-600: hsl(215, 25%, 60%);
+    --text-700: hsl(215, 25%, 70%);
+    --text-800: hsl(215, 25%, 80%);
+    --text-900: hsl(217, 25%, 90%);
+    --text-950: hsl(210, 23%, 95%);
+    --text: var(--text-900);
+    --background-50: hsl(0, 0%, 5%);
+    --background-100: hsl(0, 0%, 10%);
+    --background-200: hsl(0, 0%, 20%);
+    --background-300: hsl(0, 0%, 30%);
+    --background-400: hsl(0, 0%, 40%);
+    --background-500: hsl(0, 0%, 50%);
+    --background-600: hsl(0, 0%, 60%);
+    --background-700: hsl(0, 0%, 70%);
+    --background-800: hsl(0, 0%, 80%);
+    --background-900: hsl(0, 0%, 90%);
+    --background-950: hsl(0, 0%, 95%);
+    --background: var(--background-50);
+    --primary-50: hsl(185, 52%, 5%);
+    --primary-100: hsl(185, 49%, 10%);
+    --primary-200: hsl(186, 51%, 20%);
+    --primary-300: hsl(185, 50%, 30%);
+    --primary-400: hsl(185, 50%, 40%);
+    --primary-500: hsl(185, 50%, 50%);
+    --primary-600: hsl(185, 50%, 60%);
+    --primary-700: hsl(185, 50%, 70%);
+    --primary-800: hsl(186, 50%, 80%);
+    --primary-900: hsl(185, 49%, 90%);
+    --primary-950: hsl(185, 52%, 95%);
+    --primary: var(--primary-400);
+    --secondary-50: hsl(43, 69%, 5%);
+    --secondary-100: hsl(45, 69%, 10%);
+    --secondary-200: hsl(45, 71%, 20%);
+    --secondary-300: hsl(45, 70%, 30%);
+    --secondary-400: hsl(45, 70%, 40%);
+    --secondary-500: hsl(45, 70%, 50%);
+    --secondary-600: hsl(45, 70%, 60%);
+    --secondary-700: hsl(45, 70%, 70%);
+    --secondary-800: hsl(45, 71%, 80%);
+    --secondary-900: hsl(45, 69%, 90%);
+    --secondary-950: hsl(47, 69%, 95%);
+    --secondary: var(--secondary-500);
+    --accent-50: hsl(24, 60%, 5%);
+    --accent-100: hsl(21, 61%, 10%);
+    --accent-200: hsl(22, 59%, 20%);
+    --accent-300: hsl(22, 59%, 30%);
+    --accent-400: hsl(22, 59%, 40%);
+    --accent-500: hsl(22, 59%, 50%);
+    --accent-600: hsl(22, 59%, 60%);
+    --accent-700: hsl(22, 59%, 70%);
+    --accent-800: hsl(22, 59%, 80%);
+    --accent-900: hsl(21, 61%, 90%);
+    --accent-950: hsl(20, 60%, 95%);
+    --accent: var(--accent-700);
+  }
+}
+:root {
+  --poke-clr-normal: linear-gradient(#c5c5a1, #a4a484);
+  --poke-clr-fire: linear-gradient(#e96933, #d05e2e);
+  --poke-clr-water: linear-gradient(#6188a1, #54778c);
+  --poke-clr-electric: linear-gradient(#f5f583, #d7d773);
+  --poke-clr-grass: linear-gradient(#87cf87, #76b376);
+  --poke-clr-ice: linear-gradient(#7ce1e1, #6ec9c9);
+  --poke-clr-fighting: linear-gradient(#db93db, #bf81bf);
+  --poke-clr-poison: linear-gradient(#844784, #6a396a);
+  --poke-clr-ground: linear-gradient(#776043, #5d4b35);
+  --poke-clr-psychic: linear-gradient(#c04f8b, #a74479);
+  --poke-clr-bug: linear-gradient(#c19748, #ab8540);
+  --poke-clr-rock: linear-gradient(#9e4646, #883c3c);
+  --poke-clr-ghost: linear-gradient(#57576d, #3e3e4e);
+  --poke-clr-dark: linear-gradient(#1f1f1f, #000000);
+  --poke-clr-steel: linear-gradient(#c5c5c5, #a2a2a2);
+  --shadow-level-3: 0px 4px 8px 3px rgba(0, 0, 0, 0.15),
+    0px 1px 3px 0px rgba(0, 0, 0, 0.3);
+  --shadow-level-4: 0px 6px 10px 4px rgba(0, 0, 0, 0.15),
+    0px 2px 3px 0px rgba(0, 0, 0, 0.3);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+}
+
+.primary-btn,
+.primary-btn[type=submit] {
+  background-color: var(--primary);
+  color: var(--background);
+}
+@media (prefers-color-scheme: light) {
+  .primary-btn,
+  .primary-btn[type=submit] {
+    color: var(--text);
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .primary-btn:hover, .primary-btn:focus,
+  .primary-btn[type=submit]:hover,
+  .primary-btn[type=submit]:focus {
+    background-color: var(--primary-500);
+  }
+}
+
+.secondary-btn,
+.secondary-btn[type=submit] {
+  background-color: var(--secondary);
+  color: var(--background);
+}
+@media (prefers-color-scheme: dark) {
+  .secondary-btn:hover, .secondary-btn:focus,
+  .secondary-btn[type=submit]:hover,
+  .secondary-btn[type=submit]:focus {
+    background-color: var(--secondary-600);
+  }
+}
+
+.primary-btn,
+.primary-btn[type=submit],
+.secondary-btn,
+.secondary-btn[type=submit] {
+  position: relative;
+  box-shadow: var(--shadow-level-3);
+}
+.primary-btn::after,
+.primary-btn[type=submit]::after,
+.secondary-btn::after,
+.secondary-btn[type=submit]::after {
+  content: "";
+  border-radius: 0.75rem;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: var(--shadow-level-4);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+.primary-btn:hover::after, .primary-btn:focus::after,
+.primary-btn[type=submit]:hover::after,
+.primary-btn[type=submit]:focus::after,
+.secondary-btn:hover::after,
+.secondary-btn:focus::after,
+.secondary-btn[type=submit]:hover::after,
+.secondary-btn[type=submit]:focus::after {
+  opacity: 1;
+}
+@media (prefers-color-scheme: dark) {
+  .primary-btn,
+  .primary-btn[type=submit],
+  .secondary-btn,
+  .secondary-btn[type=submit] {
+    transition: background-color 0.2s;
+  }
+}
+
+.primary-header {
+  color: hsl(215, 25%, 15%);
+  background-color: var(--primary);
+  display: flex;
+  justify-content: space-between;
+  padding-block: 1.25rem;
+  padding-inline: 2rem;
+}
+.primary-header h1 {
+  margin-inline-end: 2rem;
+  font-weight: bold;
+}
+.primary-header h1 a,
+.primary-header .action a {
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  padding-block-end: 0.125rem;
+}
+.primary-header h1 a::before,
+.primary-header .action a::before {
+  content: "";
+  position: absolute;
+  height: 0.1875rem;
+  width: 100%;
+  inset: auto 0 0 0;
+  background-color: var(--accent-500);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s;
+}
+.primary-header h1 a:hover::before, .primary-header h1 a:focus::before,
+.primary-header .action a:hover::before,
+.primary-header .action a:focus::before {
+  opacity: 1;
+  visibility: visible;
+}
+
+#content {
+  min-height: 80vh;
+  width: min(90%, 80rem);
+  margin-inline: auto;
+  margin-block: 0.75rem;
+  padding: 0.625rem;
+}
+#content .icon {
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", "Android Emoji", "EmojiSymbols", sans-serif;
+}
+
+footer {
+  text-align: center;
+  font-weight: bold;
+  background-color: var(--primary);
+  color: hsl(215, 25%, 15%);
+  padding-block: 1.25rem;
+}
+
+.pokemon-img {
+  --_bg-img: var(--bg-img, var(--poke-clr-normal));
+  background-image: var(--_bg-img);
+}
+
+.clr-fire {
+  --bg-img: var(--poke-clr-fire);
+}
+
+.clr-water {
+  --bg-img: var(--poke-clr-water);
+}
+
+.clr-electric {
+  --bg-img: var(--poke-clr-electric);
+}
+
+.clr-grass {
+  --bg-img: var(--poke-clr-grass);
+}
+
+.clr-ice {
+  --bg-img: var(--poke-clr-ice);
+}
+
+.clr-fighting {
+  --bg-img: var(--poke-clr-fighting);
+}
+
+.clr-poison {
+  --bg-img: var(--poke-clr-poison);
+}
+
+.clr-ground {
+  --bg-img: var(--poke-clr-ground);
+}
+
+.clr-psychic {
+  --bg-img: var(--poke-clr-psychic);
+}
+
+.clr-bug {
+  --bg-img: var(--poke-clr-bug);
+}
+
+.clr-rock {
+  --bg-img: var(--poke-clr-rock);
+}
+
+.clr-ghost {
+  --bg-img: var(--poke-clr-ghost);
+}
+
+.clr-dark {
+  --bg-img: var(--poke-clr-dark);
+}
+
+.clr-steel {
+  --bg-img: var(--poke-clr-steel);
+}
+
+#card-list {
+  display: grid;
+  justify-content: center;
+}
+#card-list .pokemon-card {
+  text-align: center;
+  background-color: var(--background);
+  color: var(--text);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-level-3);
+  -webkit-box-shadow: var(--shadow-level-3);
+  -moz-box-shadow: var(--shadow-level-3);
+}
+#card-list .pokemon-card[data-sellable=true] {
+  display: grid;
+}
+#card-list .pokemon-card[data-sellable=true] .sell-form {
+  align-self: end;
+}
+@media (prefers-color-scheme: dark) {
+  #card-list .pokemon-card {
+    background-color: var(--background-100);
+  }
+}
+#card-list .pokemon-card .pokemon-img {
+  overflow: hidden;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+#card-list .pokemon-card .details {
+  padding: 0.75rem;
+}
+#card-list .pokemon-card .details h2 {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  margin-block: 0.875rem;
+}
+#card-list .pokemon-card .details h2 a {
+  color: var(--secondary);
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+#card-list .pokemon-card .details h2 a:hover, #card-list .pokemon-card .details h2 a:focus {
+  color: var(--accent-900);
+}
+#card-list .pokemon-card .details .card-type {
+  opacity: 0.8;
+  display: block;
+  margin-block-end: 0.375rem;
+  font-style: italic;
+}
+#card-list .pokemon-card .details .attributes {
+  display: flex;
+  justify-content: space-between;
+}
+#card-list .pokemon-card .details .attributes .card-hp,
+#card-list .pokemon-card .details .attributes .card-attack,
+#card-list .pokemon-card .details .attributes .card-defense,
+#card-list .pokemon-card .details .attributes .card-price {
+  font-weight: bold;
+}
+#card-list .pokemon-card .buy,
+#card-list .pokemon-card .sell {
+  width: 100%;
+  background-color: var(--primary);
+  color: hsl(215, 25%, 15%);
+  border-radius: 0 0 0.5rem 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  padding-block: 0.625rem;
+  transition-property: background-color, margin, padding;
+  transition-duration: 0.2s;
+}
+#card-list .pokemon-card .buy:hover, #card-list .pokemon-card .buy:focus,
+#card-list .pokemon-card .sell:hover,
+#card-list .pokemon-card .sell:focus {
+  background-color: var(--accent);
+  margin-top: -0.3125rem;
+  padding-block-end: 0.9375rem;
+}
+
+.primary-navigation {
+  display: flex;
+  column-gap: 1.25rem;
+  letter-spacing: 0.05rem;
+}
+.primary-navigation .user {
+  position: relative;
+  letter-spacing: normal;
+  font-weight: bold;
+}
+
+.error {
+  color: var(--accent-800);
+  font-weight: bold;
+  letter-spacing: 0.025em;
+}
+.error.global {
+  display: inline-block;
+  margin-block-end: 0.5rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+#card-list {
+  grid-template-columns: repeat(auto-fill, minmax(min-content, 12.5rem));
+  column-gap: 1rem;
+  row-gap: 1.5rem;
+}
+
+#content .pokemon-card[data-noimage=true] {
+  display: grid;
+}
+#content .pokemon-card[data-noimage=true] .buy-form {
+  align-self: end;
+}
+#content form {
+  background-color: var(--primary-300);
+}
+#content form input,
+#content form select {
+  background-color: var(--primary-200);
+}
+#content .visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: auto;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+}
+#content .pagination a {
+  display: block;
+  padding: 0.5em 1em;
+  border: 0.125em solid hsl(0, 0%, 60%);
+  border-radius: 0.5em;
+  text-decoration: none;
+}
+#content .pagination a[aria-current=page] {
+  background-color: #333;
+  color: #fff;
+}
+#content .pagination a.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/*# sourceMappingURL=main.css.map */

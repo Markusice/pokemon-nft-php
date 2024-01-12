@@ -1,0 +1,12 @@
+.error {
+  color: var(--accent-800);
+  font-weight: bold;
+  letter-spacing: 0.025em;
+
+  &.global {
+    display: inline-block;
+    margin-block-end: 0.5rem;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+}

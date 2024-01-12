@@ -1,0 +1,24 @@
+{
+    "6589e42f1261c": {
+        "username": "admin",
+        "email": "admin@gmail.com",
+        "password": "$2y$10$ydgojm9BkIwQIoKyD932DeZIY8O8DlLo86pM9hd7055P9QJ\/gTGRy",
+        "balance": 0,
+        "cards": [
+            "6588a335149ac",
+            "6588a37ddc38d",
+            "6588a45bf2c68",
+            "6588a45bf2c76",
+            "6588a45bf2c78",
+            "6588a45bf2c79",
+            "6588a45bf2c7a",
+            "6588a45bf2c7b",
+            "6588a45bf2c7c",
+            "6588a45bf2c7d"
+        ],
+        "roles": [
+            "admin"
+        ],
+        "id": "6589e42f1261c"
+    }
+}
