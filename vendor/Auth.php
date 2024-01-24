@@ -27,12 +27,12 @@ class Auth
     {
         $card = $cardStorage->findById($cardID);
 
-        if ($card['price'] > $this->user['balance'] || count($this->user['cards']) >= $this->maxCards) {
+        if (!$this->canBuyCard($card)) {
             return false;
         }
-        $this->user['cards'][] = $cardID;
+
+        $this->addCard($cardID);
         $this->user['balance'] -= $card['price'];
-        $this->userStorage->update($this->user['id'], $this->user);
         $this->updateSession();
 
         $admin = $this->userStorage->findOne(['username' => 'admin']);
@@ -41,16 +41,27 @@ class Auth
 
         $card['owner'] = $this->user['id'];
         $cardStorage->update($cardID, $card);
+
         return true;
+    }
+
+    private function canBuyCard(array $card): bool
+    {
+        return $this->user['balance'] >= $card['price'] && count($this->user['cards']) < $this->maxCards;
+    }
+
+    public function addCard(string $cardID): void
+    {
+        $this->user['cards'][] = $cardID;
+        $this->userStorage->update($this->user['id'], $this->user);
     }
 
     public function sellCard(string $cardID, CardStorage $cardStorage): void
     {
         $card = $cardStorage->findById($cardID);
 
-        $this->user['cards'] = array_values(array_filter($this->user['cards'], fn($_cardID) => $_cardID !== $cardID)); # remove card from user and reindex for json
+        $this->removeCard($cardID);
         $this->user['balance'] += $card['price'] * 0.9;
-        $this->userStorage->update($this->user['id'], $this->user);
         $this->updateSession();
 
         $admin = $this->userStorage->findOne(['username' => 'admin']);
@@ -61,11 +72,10 @@ class Auth
         $cardStorage->update($cardID, $card);
     }
 
-    public function addCard(string $cardID): void
+    private function removeCard(string $cardID): void
     {
-        $this->user['cards'][] = $cardID;
+        $this->user['cards'] = array_values(array_filter($this->user['cards'], fn($_cardID) => $_cardID !== $cardID)); # remove card from user and reindex for json
         $this->userStorage->update($this->user['id'], $this->user);
-        $this->updateSession();
     }
 
     public function register(array $data): string|bool

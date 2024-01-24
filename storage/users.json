@@ -5,12 +5,8 @@
         "password": "$2y$10$ydgojm9BkIwQIoKyD932DeZIY8O8DlLo86pM9hd7055P9QJ\/gTGRy",
         "balance": 0,
         "cards": [
-            "6588a335149ac",
             "6588a37ddc38d",
             "6588a45bf2c68",
-            "6588a45bf2c76",
-            "6588a45bf2c78",
-            "6588a45bf2c79",
             "6588a45bf2c7a",
             "6588a45bf2c7b",
             "6588a45bf2c7c",
@@ -20,5 +16,22 @@
             "admin"
         ],
         "id": "6589e42f1261c"
+    },
+    "65a484db3b362": {
+        "username": "mark",
+        "email": "mark@gmail.com",
+        "password": "$2y$10$GEyynBv.Hf\/m\/f8.HEu\/kesMQOGJqj9ZWuzfDccxmJ33cjgfzLi3a",
+        "balance": 306,
+        "cards": [
+            "6588a335149ac",
+            "6588a45bf2c76",
+            "6588a45bf2c78",
+            "65a484304bb9e",
+            "6588a45bf2c79"
+        ],
+        "roles": [
+            "user"
+        ],
+        "id": "65a484db3b362"
     }
 }
