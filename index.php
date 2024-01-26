@@ -17,7 +17,7 @@ $cards = $cardStorage->findAll();
  */
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['filterType']) && in_array($_GET['filterType'], $types)) {
-    $cards = $cardStorage->findMany(fn($card) => $card['type'] === $_GET['filterType']); # filter cards by type
+    $cards = $cardStorage->findMany(fn ($card) => $card['type'] === $_GET['filterType']); # filter cards by type
 } elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) { # if user wants to buy a card
     $cardID = $_POST['id'];
     $errors = [];
@@ -41,6 +41,8 @@ if (isset($_GET['page']) && $_GET['page'] > 1 && $_GET['page'] <= $totalPages) #
 else
     $currentPage = 1;
 
+$canPaginate = $totalPages > 1;
+
 ?>
 
 <!DOCTYPE html>
@@ -54,7 +56,9 @@ else
     <link rel="stylesheet" href="./resources/styles/main.css">
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <script defer src="./resources/scripts/pagination.js" type="module"></script>
+    <?php if ($canPaginate) : ?>
+        <script defer src="./resources/scripts/pagination.js" type="module"></script>
+    <?php endif; ?>
 </head>
 
 <body>
@@ -72,7 +76,7 @@ else
                 <select name="filterType" id="filterType" class="text-sm rounded-lg block w-max p-2.5">
                     <option value="">--Type to filter--</option>
 
-                    <?php foreach ($types as $type): ?>
+                    <?php foreach ($types as $type) : ?>
                         <option value="<?= $type ?>" <?= (isset($_GET['filterType']) && $_GET['filterType'] === $type) ? 'selected' : '' ?>>
                             <?= ucfirst($type) ?>
                         </option>
@@ -85,18 +89,17 @@ else
             </div>
         </form>
 
-        <?php if (isset($errors['buy'])): ?>
+        <?php if (isset($errors['buy'])) : ?>
             <span class="error">
                 <?= $errors['buy'] ?>
             </span>
         <?php endif; ?>
 
         <?php
-        $canPaginate = $totalPages > 1;
-        if ($canPaginate):
+        if ($canPaginate) :
             $hasNext = $currentPage < $totalPages;
             $hasPrev = $currentPage > 1;
-            ?>
+        ?>
             <nav aria-label="pagination">
                 <ul class="pagination flex gap-x-1">
                     <li>
@@ -106,10 +109,9 @@ else
                         </a>
                     </li>
 
-                    <?php foreach (range(1, (int) $totalPages) as $page): ?>
+                    <?php foreach (range(1, (int) $totalPages) as $page) : ?>
                         <li>
-                            <a href="" class="page-link" data-page="<?= $page ?>" <?php if ($page === $currentPage): ?>
-                                    aria-current="page" <?php endif; ?>>
+                            <a href="" class="page-link" data-page="<?= $page ?>" <?php if ($page === $currentPage) : ?> aria-current="page" <?php endif; ?>>
                                 <span class="visuallyhidden">page </span>
                                 <?= $page ?>
                             </a>
