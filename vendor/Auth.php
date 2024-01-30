@@ -18,9 +18,14 @@ class Auth
         }
     }
 
-    public function updateSession(): void
+    private function updateSession(): void
     {
         $_SESSION['user'] = $this->user;
+    }
+
+    public function updateUserSession($user): void
+    {
+        $_SESSION['user'] = $user;
     }
 
     public function buyCard(string $cardID, CardStorage $cardStorage): bool
@@ -31,12 +36,12 @@ class Auth
             return false;
         }
 
-        $this->addCard($cardID);
         $this->user['balance'] -= $card['price'];
+        $this->user = $this->addCardToUser($cardID, $this->user);
         $this->updateSession();
 
         $admin = $this->userStorage->findOne(['username' => 'admin']);
-        $admin['cards'] = array_values(array_filter($admin['cards'], fn($_cardID) => $_cardID !== $cardID)); # remove card from admin and reindex for json
+        $admin = $this->removeCardFromUser($cardID, $admin);
         $this->userStorage->update($admin['id'], $admin);
 
         $card['owner'] = $this->user['id'];
@@ -50,32 +55,34 @@ class Auth
         return $this->user['balance'] >= $card['price'] && count($this->user['cards']) < $this->maxCards;
     }
 
-    public function addCard(string $cardID): void
+    public function addCardToUser(string $cardID, array $user): array
     {
-        $this->user['cards'][] = $cardID;
-        $this->userStorage->update($this->user['id'], $this->user);
+        $user['cards'][] = $cardID;
+        $this->userStorage->update($user['id'], $user);
+        return $user;
+    }
+
+    private function removeCardFromUser(string $cardID, array $user): array
+    {
+        $user['cards'] = array_values(array_filter($user['cards'], fn ($_cardID) => $_cardID !== $cardID)); # reindex for json using array_values
+        $this->userStorage->update($user['id'], $user);
+        return $user;
     }
 
     public function sellCard(string $cardID, CardStorage $cardStorage): void
     {
         $card = $cardStorage->findById($cardID);
 
-        $this->removeCard($cardID);
         $this->user['balance'] += $card['price'] * 0.9;
+        $this->user = $this->removeCardFromUser($cardID, $this->user);
         $this->updateSession();
 
         $admin = $this->userStorage->findOne(['username' => 'admin']);
-        $admin['cards'][] = $cardID;
+        $admin = $this->addCardToUser($cardID, $admin);
         $this->userStorage->update($admin['id'], $admin);
 
         $card['owner'] = $admin['id'];
         $cardStorage->update($cardID, $card);
-    }
-
-    private function removeCard(string $cardID): void
-    {
-        $this->user['cards'] = array_values(array_filter($this->user['cards'], fn($_cardID) => $_cardID !== $cardID)); # remove card from user and reindex for json
-        $this->userStorage->update($this->user['id'], $this->user);
     }
 
     public function register(array $data): string|bool

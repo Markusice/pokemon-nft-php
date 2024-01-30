@@ -28,7 +28,11 @@ if ($currentTab === AccountTab::AdminPanel->value && $_SERVER['REQUEST_METHOD'] 
 
     if ($success = validateNewCard($auth, $_POST, $types, $data, $errors)) {
         $cardID = $cardStorage->add($data);
-        $auth->addCard($cardID);
+
+        $admin = $auth->authenticatedUser();
+        $admin = $auth->addCardToUser($cardID, $admin);
+        $auth->updateUserSession($admin);
+
         unset($_POST); // clear data for input values
     }
 }
@@ -75,16 +79,16 @@ if ($currentTab === AccountTab::AdminPanel->value && $_SERVER['REQUEST_METHOD'] 
             <p class="text-lg opacity-80">Details of your account</p>
 
             <ul class="tabs mt-4 flex p-1 gap-x-1 rounded-md w-max">
-                <li <?php if ($currentTab === AccountTab::Profile->value): ?> class="active" <?php endif; ?>>
+                <li <?php if ($currentTab === AccountTab::Profile->value) : ?> class="active" <?php endif; ?>>
                     <a href="./profile.php">Profile</a>
                 </li>
 
-                <li <?php if ($currentTab === AccountTab::Cards->value): ?> class="active" <?php endif; ?>>
+                <li <?php if ($currentTab === AccountTab::Cards->value) : ?> class="active" <?php endif; ?>>
                     <a href="./profile.php?tab=<?= AccountTab::Cards->value ?>">Cards</a>
                 </li>
 
-                <?php if ($auth->authorize(['admin'])): ?>
-                    <li <?php if ($currentTab === AccountTab::AdminPanel->value): ?> class="active" <?php endif; ?>>
+                <?php if ($auth->authorize(['admin'])) : ?>
+                    <li <?php if ($currentTab === AccountTab::AdminPanel->value) : ?> class="active" <?php endif; ?>>
                         <a href="./profile.php?tab=<?= AccountTab::AdminPanel->value ?>">Admin
                             Panel</a>
                     </li>

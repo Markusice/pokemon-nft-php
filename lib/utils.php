@@ -8,6 +8,16 @@ function redirect(string $page): void
     exit();
 }
 
+function isTypeValid(string $type, array $types): bool
+{
+    return in_array($type, $types, true);
+}
+
+function getCardsByType(CardStorage $cardStorage, string $type, array $types): array
+{
+    return $cardStorage->findMany(fn ($card) => $card['type'] === $type);
+}
+
 function validateRegistration(array $post, array &$data, array &$errors): bool
 {
     if ('' !== $username = trim($post['username'])) {

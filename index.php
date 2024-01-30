@@ -16,16 +16,20 @@ $cards = $cardStorage->findAll();
  * @var array $types
  */
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['filterType']) && in_array($_GET['filterType'], $types)) {
-    $cards = $cardStorage->findMany(fn ($card) => $card['type'] === $_GET['filterType']); # filter cards by type
-} elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) { # if user wants to buy a card
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['filterType'])) {
+    $filterType = $_GET['filterType'];
+
+    if (isTypeValid($filterType, $types)) {
+        $cards = getCardsByType($cardStorage, $filterType, $types);
+    }
+} elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
     $cardID = $_POST['id'];
     $errors = [];
 
     if (!$auth->buyCard($cardID, $cardStorage)) {
         $errors['buy'] = 'You don\'t have enough money or you already exceeded the maximum number of cards.';
     } else {
-        redirect('index.php'); # refresh page
+        redirect('index.php');
     }
 }
 
@@ -36,10 +40,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['filterType']) && in_arr
 
 require_once 'lib/cards-page.php';
 
-if (isset($_GET['page']) && $_GET['page'] > 1 && $_GET['page'] <= $totalPages) # if user wants to change page
+if (isset($_GET['page']) && $_GET['page'] > 1 && $_GET['page'] <= $totalPages) {
     $currentPage = (int) $_GET['page'];
-else
+} else {
     $currentPage = 1;
+}
 
 $canPaginate = $totalPages > 1;
 

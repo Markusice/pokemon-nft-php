@@ -3,11 +3,7 @@
 declare(strict_types=1);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['page'])) {
-    /**
-     * @var array $types
-     */
     require_once 'lib/_init.php';
-    require_once 'lib/types.php';
     require_once 'storage/CardStorage.php';
 
     $userStorage = new UserStorage();
@@ -16,8 +12,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['page'])) {
     $cardStorage = new CardStorage();
     $cards = $cardStorage->findAll();
 
-    if (isset($_POST['filter']) && in_array($_POST['filter'], $types)) {
-        $cards = $cardStorage->findMany(fn($card) => $card['type'] === $_POST['filter']);
+    if (isset($_POST['filter'])) {
+        $filterType = $_POST['filter'];
+
+        require_once 'lib/types.php';
+
+        /**
+         * @var array $types
+         */
+
+        if (isTypeValid($filterType, $types)) {
+            $cards = getCardsByType($cardStorage, $filterType, $types);
+        }
     }
 
     /**
