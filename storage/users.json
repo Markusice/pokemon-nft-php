@@ -10,9 +10,7 @@
             "6588a45bf2c7a",
             "6588a45bf2c7b",
             "6588a45bf2c7c",
-            "65b96bc7d8cae",
-            "6588a335149ac",
-            "6588a45bf2c78"
+            "65b96bc7d8cae"
         ],
         "roles": [
             "admin"
@@ -23,11 +21,13 @@
         "username": "mark",
         "email": "mark@gmail.com",
         "password": "$2y$10$PyLoz1foDGEcTdzlChjBuOeDkiXeP\/J\/yjDDDGZcr9vuQKDu7Byia",
-        "balance": 667.5,
+        "balance": 312.5,
         "cards": [
             "6588a45bf2c79",
             "6588a45bf2c7d",
-            "6588a45bf2c76"
+            "6588a45bf2c76",
+            "6588a335149ac",
+            "6588a45bf2c78"
         ],
         "roles": [
             "user"

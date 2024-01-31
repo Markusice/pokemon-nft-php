@@ -64,6 +64,8 @@ $canPaginate = $totalPages > 1;
     <?php if ($canPaginate) : ?>
         <script defer src="./resources/scripts/pagination.js" type="module"></script>
     <?php endif; ?>
+
+    <script type="module" src="./resources/scripts/auto-animate.js" defer></script>
 </head>
 
 <body>
@@ -82,7 +84,8 @@ $canPaginate = $totalPages > 1;
                     <option value="">--Type to filter--</option>
 
                     <?php foreach ($types as $type) : ?>
-                        <option value="<?= $type ?>" <?= (isset($_GET['filterType']) && $_GET['filterType'] === $type) ? 'selected' : '' ?>>
+                        <option value="<?= $type ?>" <?= (isset($_GET['filterType'])
+                                                            && $_GET['filterType'] === $type) ? 'selected' : '' ?>>
                             <?= ucfirst($type) ?>
                         </option>
                     <?php endforeach; ?>
